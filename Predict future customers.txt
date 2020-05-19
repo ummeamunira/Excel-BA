@@ -1,0 +1,45 @@
+How can I predict the number of customers a new health club will have in 10 years?
+
+Our answer is in file Chapter1customer.xlsx. Here we need to set up a model from
+scratch. Spreadsheet models have inputs or assumptions that we use to calculate desired outputs. In a
+basic customer estimation input model, we need three inputs:
+■■ The number of customers at the beginning of Year 1.
+■■ Churn rate: the fraction of starting customers (excluding new customers) who quit each year.
+■■ The number of new customers obtained each year.
+
+We entered values for these inputs in C2:C4. It’s important that spreadsheet inputs should be
+separated from spreadsheet outputs and never hard-coded in Excel formulas. Separating spreadsheet
+inputs from outputs makes it easy to determine how changing the inputs affects the spreadsheet
+outputs.
+The key to our customer estimation model is in the following relationships:
+■■ (Ending Year t Customers) = (Start Year t Customers) + (New Year t Customers) – (Year Customer
+quits).
+■■ (Start Year t+1 Customers) = (End Year t Customers)
+■■ Start Year 1 Customers = Value in Cell C2.
+Another key to solving this problem is in knowing what we need to track during each year:
+■■ Start customers
+■■ New customers
+■■ Quitting customers
+■■ Ending customers
+In cell C8, we compute the number of Year 1 starting customers with the formula =C2. Next, in
+column D, we reenter the number of new customers from each year by copying from D8 to D9:D17
+the formula =$C$3 or C$3.
+
+Note that the numeral 3 must be preceded with the dollar sign; otherwise, when the formula in D8
+is copied, the 3 would change, giving incorrect results. Preceding the letter C with a dollar sign is a
+matter of choice because we are not copying the formula across a column.
+The number of customers quitting each month is the starting customers multiplied by the churn
+rate. Therefore, in column E we compute the number of customers that quit each month by copying
+from E8 to E9:E18 the formula =$C$4*C8 or C$4*C8. Note here that the numeral 8 does not use the
+dollar sign because when it’s copied, we want 8 to change to 9, 10, and so on.
+The ending value for customers for each month is obtained by adding starting customers and new
+customers and then subtracting quitting customers. Copying from F8 to F9:F18 the formula =C8+D8-
+F8 computes each month’s ending customers.
+For months 2–10, starting customers will equal the previous month’s ending customers, so copy
+from C9 to C10:C17 the formula =F8. We find (don’t worry about the fraction) that after 10 years, our
+health club will have around 127 customers.
+The astute reader might argue that we really do not know the churn rate and number of new
+customers each year. She is absolutely right. We should perform a sensitivity analysis to determine
+how changes in each year’s new customers and the annual churn rate change the number of Year 10
+ending customers. In Chapter 17, you will learn how to use data tables to perform such a sensitivity
+analysis.
